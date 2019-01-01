@@ -9,16 +9,14 @@ const attribution = 'Map data &copy; <a href="https://www.openstreetmap.org/">Op
 class App extends Component {
   render() {
     return (
-      <div className="App">
-        <Map center={[38.9072, -77.0369]} zoom={12}>
-              <TileLayer
-                id={'mapbox.light'}
-                attribution={attribution}
-                url={tileUrl}
-                accessToken={accessToken}
-                />
+        <Map id="map" center={[38.9072, -77.0369]} zoom={12}>
+        <TileLayer
+          attribution={attribution}
+          url={tileUrl}
+          id={'mapbox.light'}
+          accessToken={accessToken}
+        />
           </ Map>
-      </div>
     );
   }
 }
