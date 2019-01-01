@@ -44,8 +44,8 @@ class App extends Component {
           />
           {this.state.trees.map(tree => {
             return (
-              <Marker key={tree.properties.id} position={[tree.geometry.coordinates[1], tree.geometry.coordinates[0]]} >
-              <Popup key={tree.properties.id}>
+              <Marker key={`marker_${tree.properties.id}`} position={[tree.geometry.coordinates[1], tree.geometry.coordinates[0]]} >
+              <Popup key={`pop_${tree.properties.id}`}>
                 {tree.properties.common_name}
               </Popup>
             </ Marker>)
