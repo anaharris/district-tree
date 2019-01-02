@@ -13,6 +13,11 @@ L.Icon.Default.mergeOptions({
     shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 });
 
+const customIcon = new L.Icon({
+    iconUrl: require('./assets/png/marker.png'),
+    iconSize: [20, 20]
+})
+
 const accessToken = 'pk.eyJ1IjoiYW5haGFycmlzIiwiYSI6ImNqcWQyamVxOTBrMG40Mm4yYWFwYWtnc3gifQ.y6JLzfgsdsmZJqy1V1rsfg'
 const tileUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}'
 const attribution = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
@@ -25,7 +30,8 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      trees: treeData.features
+      trees: treeData.features,
+      cliked: null
     }
   }
 
@@ -50,6 +56,7 @@ class App extends Component {
               <Marker
                 key={`marker_${tree.properties.id}`}
                 position={[tree.geometry.coordinates[1], tree.geometry.coordinates[0]]}
+                icon={customIcon}
               >
               <Popup key={`pop_${tree.properties.id}`}>
                 {tree.properties.common_name ? (<div>{`Common name: ${tree.properties.common_name}`}</div>) : null}
