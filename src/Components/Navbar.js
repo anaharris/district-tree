@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
-import searchLogo from '../assets/png/search.png'
-import profileLogo from '../assets/png/profile.png'
-import saveLogo from '../assets/png/like.png'
-import mainLogo from '../assets/png/main2.png'
+import searchLogo from './search.png'
+import profileLogo from './profile.png'
+import saveLogo from './save.png'
+import mainLogo from './main.png'
 
 class Navbar extends Component {
 
@@ -10,20 +10,23 @@ class Navbar extends Component {
     return (
       <div id='navigation-container'>
         <div id='navigation-bar'>
+          <div id='main-logo-cont'>
+            <img id='main-logo' src={mainLogo} />
+          </div>
           <ul id="navigation-primary">
           <li className="nav-item profile">
           <span className="nav-item-icon">
-            L
+            <img className='logo' src={profileLogo}/>
           </span>
           </li>
             <li className="nav-item search">
             <span className="nav-item-icon">
-              S
+              <img className='logo' src={searchLogo}/>
             </span>
             </li>
           <li className="nav-item save">
             <span className="nav-item-icon">
-              +
+              <img className='logo' src={saveLogo}/>
             </span>
           </li>
           </ul>

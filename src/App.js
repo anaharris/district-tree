@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Navbar from './Components/Navbar'
 import {Map, TileLayer, Marker, Popup} from 'react-leaflet'
 import MarkerClusterGroup from 'react-leaflet-markercluster'
-import treeData from './data/data.json'
+import treeData from './data/more_data.json'
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
 
@@ -16,7 +16,7 @@ L.Icon.Default.mergeOptions({
 
 const customIcon = new L.Icon({
     iconUrl: require('./assets/png/marker.png'),
-    iconSize: [20, 20]
+    iconSize: [25, 25]
 })
 
 const accessToken = 'pk.eyJ1IjoiYW5haGFycmlzIiwiYSI6ImNqcWQyamVxOTBrMG40Mm4yYWFwYWtnc3gifQ.y6JLzfgsdsmZJqy1V1rsfg'

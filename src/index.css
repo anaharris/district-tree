@@ -1,5 +1,6 @@
 html {
   height: 100%;
+  overflow-x: hidden;
 }
 
 body {
@@ -20,12 +21,12 @@ body {
 #map {
   position: absolute;
   height: 100%;
-  width: 94%;
+  width: 91%;
 }
 
 #navigation-container {
   z-index: 10;
-  width: 6%;
+  width: 9%;
   height: 100%;
   right: 0;
   display: block;
@@ -37,12 +38,12 @@ body {
   height: 100%;
   z-index: 10;
   position: relative;
-  border-left: 2px solid green;
+  border-left: 3px solid green;
 }
 
 #navigation-primary {
   z-index: 10;
-  width: 100%;
+  width: 50%;
   overflow: visible;
   height: 210px;
   position: absolute;
@@ -51,24 +52,37 @@ body {
 }
 
 .nav-item {
-  z-index: 10;
-  padding-top: 10px;
+  z-index: 20;
+  padding-top: 30px;
   display: block;
   position: relative;
-  width: 20px;
-  height: 20px;
+  width: 50px;
+  height: 50px;
   cursor: pointer;
 }
 
 .nav-item-icon {
-  width: 10px;
-    height: 10px;
-    display: block;
-    margin: 0 auto;
-    position: relative;
-    z-index: 2;
-    fill: #fff;
-    opacity: .5;
+  width: 50px;
+  height: 50px;
+  display: block;
+  margin: 0 auto;
+  position: relative;
+}
+
+.logo {
+  width: 40px;
+}
+
+#main-logo {
+  width: 50px;
+  padding-top: 15px;
+}
+
+#main-logo-cont {
+  display: block;
+  position: relative;
+  margin: 0 auto;
+  width: 50px;
 }
 
 .leaflet-container { height: 100% }
