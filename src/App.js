@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Navbar from './Components/Navbar'
 import {Map, TileLayer, Marker, Popup} from 'react-leaflet'
 import treeData from './data/data.json'
 import 'leaflet/dist/leaflet.css'
@@ -16,7 +17,7 @@ const accessToken = 'pk.eyJ1IjoiYW5haGFycmlzIiwiYSI6ImNqcWQyamVxOTBrMG40Mm4yYWFw
 const tileUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}'
 const attribution = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
 const mapCenter = [38.9072, -77.0369]
-const zoom = 12
+const zoom = 13
 
 
 class App extends Component {
@@ -30,6 +31,7 @@ class App extends Component {
 
   render() {
     return (
+      <div>
         <Map
           ref={m => { this.leafletMap = m; }}
           id="map"
@@ -42,7 +44,8 @@ class App extends Component {
             id={'mapbox.light'}
             accessToken={accessToken}
           />
-          {this.state.trees.map(tree => {
+          {
+            this.state.trees.map(tree => {
             return (
               <Marker key={`marker_${tree.properties.id}`} position={[tree.geometry.coordinates[1], tree.geometry.coordinates[0]]} >
               <Popup key={`pop_${tree.properties.id}`}>
@@ -51,6 +54,8 @@ class App extends Component {
             </ Marker>)
           })}
         </ Map>
+        <Navbar />
+      </div>  
     )
   }
 

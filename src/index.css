@@ -18,7 +18,57 @@ body {
 }
 
 #map {
+  position: absolute;
   height: 100%;
+  width: 93%;
+}
+
+#navigation-container {
+  z-index: 10;
+  width: 7%;
+  height: 100%;
+  right: 0;
+  display: block;
+  position: absolute;
+}
+
+#navigation-bar {
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  position: relative;
+  border-left: 2px solid green;
+}
+
+#navigation-primary {
+  z-index: 10;
+  width: 100%;
+  overflow: visible;
+  height: 210px;
+  position: absolute;
+  top: 50%;
+  margin-top: -105px;
+}
+
+.nav-item {
+  z-index: 10;
+  padding-top: 10px;
+  display: block;
+  position: relative;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+
+.nav-item-icon {
+  width: 10px;
+    height: 10px;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    z-index: 2;
+    fill: #fff;
+    opacity: .5;
 }
 
 .leaflet-container { height: 100% }
