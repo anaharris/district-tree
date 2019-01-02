@@ -12,18 +12,18 @@ class Navbar extends Component {
         <div id='navigation-bar'>
           <ul id="navigation-primary">
           <li className="nav-item profile">
-            <span className="nav-item-icon">
-              <img src={profileLogo} />
-            </span>
+          <span className="nav-item-icon">
+            L
+          </span>
           </li>
             <li className="nav-item search">
-              <span className="nav-item-icon">
-                <img src={searchLogo} />
-              </span>
+            <span className="nav-item-icon">
+              S
+            </span>
             </li>
           <li className="nav-item save">
             <span className="nav-item-icon">
-              <img src={saveLogo} />
+              +
             </span>
           </li>
           </ul>

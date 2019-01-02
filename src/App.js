@@ -47,15 +47,23 @@ class App extends Component {
           {
             this.state.trees.map(tree => {
             return (
-              <Marker key={`marker_${tree.properties.id}`} position={[tree.geometry.coordinates[1], tree.geometry.coordinates[0]]} >
+              <Marker
+                key={`marker_${tree.properties.id}`}
+                position={[tree.geometry.coordinates[1], tree.geometry.coordinates[0]]}
+              >
               <Popup key={`pop_${tree.properties.id}`}>
-                {tree.properties.common_name}
+                {tree.properties.common_name ? (<div>{`Common name: ${tree.properties.common_name}`}</div>) : null}
+                {tree.properties.scientific_name ? (<div>{`Scientific name: ${tree.properties.scientific_name}`}</div>) : null}
+                {tree.properties.fam_name ? (<div>{`Family: ${tree.properties.fam_name}`}</div>) : null}
+                {tree.properties.genus_name ? (<div>{`Genus: ${tree.properties.genus_name}`}</div>) : null}
+                {tree.properties.condition ? (<div>{`Condition: ${tree.properties.condition}`}</div>) : null}
+                Address: {tree.properties.address}
               </Popup>
             </ Marker>)
           })}
         </ Map>
         <Navbar />
-      </div>  
+      </div>
     )
   }
 
