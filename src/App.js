@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Navbar from './Components/Navbar'
 import {Map, TileLayer, Marker, Popup} from 'react-leaflet'
+import MarkerClusterGroup from 'react-leaflet-markercluster'
 import treeData from './data/data.json'
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
@@ -23,6 +24,7 @@ const tileUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_tok
 const attribution = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
 const mapCenter = [38.9072, -77.0369]
 const zoom = 13
+const maxZoom = 19
 
 
 class App extends Component {
@@ -43,6 +45,7 @@ class App extends Component {
           id="map"
           center={mapCenter}
           zoom={zoom}
+          maxZoom={maxZoom}
         >
           <TileLayer
             attribution={attribution}
@@ -50,24 +53,27 @@ class App extends Component {
             id={'mapbox.light'}
             accessToken={accessToken}
           />
-          {
-            this.state.trees.map(tree => {
+            <MarkerClusterGroup>
+          {this.state.trees.map(tree => {
             return (
-              <Marker
-                key={`marker_${tree.properties.id}`}
-                position={[tree.geometry.coordinates[1], tree.geometry.coordinates[0]]}
-                icon={customIcon}
-              >
-              <Popup key={`pop_${tree.properties.id}`}>
-                {tree.properties.common_name ? (<div>{`Common name: ${tree.properties.common_name}`}</div>) : null}
-                {tree.properties.scientific_name ? (<div>{`Scientific name: ${tree.properties.scientific_name}`}</div>) : null}
-                {tree.properties.fam_name ? (<div>{`Family: ${tree.properties.fam_name}`}</div>) : null}
-                {tree.properties.genus_name ? (<div>{`Genus: ${tree.properties.genus_name}`}</div>) : null}
-                {tree.properties.condition ? (<div>{`Condition: ${tree.properties.condition}`}</div>) : null}
-                Address: {tree.properties.address}
-              </Popup>
-            </ Marker>)
+                <Marker
+                  key={`marker_${tree.properties.id}`}
+                  position={[tree.geometry.coordinates[1], tree.geometry.coordinates[0]]}
+                  icon={customIcon}
+                >
+                <Popup key={`pop_${tree.properties.id}`}>
+                  {tree.properties.common_name ? (<div>{`Common name: ${tree.properties.common_name}`}</div>) : null}
+                  {tree.properties.scientific_name ? (<div>{`Scientific name: ${tree.properties.scientific_name}`}</div>) : null}
+                  {tree.properties.fam_name ? (<div>{`Family: ${tree.properties.fam_name}`}</div>) : null}
+                  {tree.properties.genus_name ? (<div>{`Genus: ${tree.properties.genus_name}`}</div>) : null}
+                  {tree.properties.condition ? (<div>{`Condition: ${tree.properties.condition}`}</div>) : null}
+                  Address: {tree.properties.address}
+                </Popup>
+              </ Marker>
+            )
           })}
+          </ MarkerClusterGroup>
+
         </ Map>
         <Navbar />
       </div>
