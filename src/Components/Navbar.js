@@ -10,17 +10,17 @@ class Navbar extends Component {
       <div id='navigation-container'>
         <div id='navigation-bar'>
           <div id='main-logo-cont'>
-            <img id='main-logo' src={mainLogo} />
+            <img id='main-logo' src={mainLogo} alt='District Tree logo'/>
           </div>
           <ul id="navigation-primary">
             <li className="nav-item search">
             <span className="nav-item-icon">
-              <img className='logo' src={searchLogo}/>
+              <img className='logo' src={searchLogo} alt='search icon'/>
             </span>
             </li>
           <li className="nav-item save">
             <span className="nav-item-icon">
-              <img className='logo' src={saveLogo}/>
+              <img className='logo' src={saveLogo} alt='tree icon'/>
             </span>
           </li>
           </ul>

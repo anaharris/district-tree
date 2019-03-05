@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Navbar from './Components/Navbar'
 import {Map, TileLayer, Marker, Popup} from 'react-leaflet'
 import MarkerClusterGroup from 'react-leaflet-markercluster'
-import treeData from './data/more_data.json'
+// import treeData from './data/more_data.json'
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
 
@@ -22,8 +22,8 @@ const customIcon = new L.Icon({
 const accessToken = 'pk.eyJ1IjoiYW5haGFycmlzIiwiYSI6ImNqcWQyamVxOTBrMG40Mm4yYWFwYWtnc3gifQ.y6JLzfgsdsmZJqy1V1rsfg'
 const tileUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}'
 const attribution = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
-const mapCenter = [38.9072, -77.0369]
-const zoom = 13
+const mapCenter = [38.8977, -77.0365]
+const zoom = 16
 const maxZoom = 19
 
 
@@ -32,9 +32,31 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      trees: treeData.features,
-      cliked: null
+      trees: [],
+      coords: "-77.0466470718384,38.89195139727248,-77.0263695716858,38.90345757744355",
+      loading: false
     }
+  }
+
+  componentDidMount = () => {
+      this.fetchTrees()
+  }
+
+  fetchTrees = () => {
+    fetch(`http://localhost:5000/trees?bbox=${this.state.coords}`)
+      .then(res => res.json())
+      .then(data => {
+        this.setState({trees: data.features})
+      })
+  }
+
+  handleMapMove = () => {
+    let swLng = this.leafletMap.leafletElement.getBounds()._southWest.lng
+    let swLat = this.leafletMap.leafletElement.getBounds()._southWest.lat
+    let neLng = this.leafletMap.leafletElement.getBounds()._northEast.lng
+    let neLat = this.leafletMap.leafletElement.getBounds()._northEast.lat
+    this.setState({coords: `${swLng},${swLat},${neLng},${neLat}`})
+    this.fetchTrees()
   }
 
   render() {
@@ -46,6 +68,8 @@ class App extends Component {
           center={mapCenter}
           zoom={zoom}
           maxZoom={maxZoom}
+          onMoveEnd={this.handleMapMove.bind()}
+          // zoomend={this.handleMapMove}
         >
           <TileLayer
             attribution={attribution}
