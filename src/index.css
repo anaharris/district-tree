@@ -16,6 +16,7 @@ body {
 
 #root {
   height: 100%;
+  font-family: 'Yantramanav', sans-serif;
 }
 
 #map {
@@ -90,4 +91,30 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
+}
+
+#loading-background {
+  background-color: #edc4bc;
+  height: 100vh;
+}
+
+#loading-logo {
+  display: block;
+  height: 30%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 5%;
+}
+
+#loading-title {
+  color: #3a5344;
+  font-size: 30px;
+  font-family: 'El Messiri', sans-serif;
+  text-align: center;
+  padding-bottom: 5%;
+}
+
+#loading-message {
+  font-size: 18px;
+  text-align: center;
 }

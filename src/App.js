@@ -5,6 +5,7 @@ import MarkerClusterGroup from 'react-leaflet-markercluster'
 // import treeData from './data/more_data.json'
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
+import withLoadingSpinner from './Components/withLoadingSpinner'
 
 delete L.Icon.Default.prototype._getIconUrl;
 
@@ -33,8 +34,8 @@ class App extends Component {
     super()
     this.state = {
       trees: [],
-      coords: "-77.0466470718384,38.89195139727248,-77.0263695716858,38.90345757744355",
-      loading: false
+      coords: "-77.0466470718384,38.89195139727248,-77.0263695716858,38.90345757744355"
+      // loading: true
     }
   }
 
@@ -106,4 +107,4 @@ class App extends Component {
 
 }
 
-export default App;
+export default withLoadingSpinner(App);

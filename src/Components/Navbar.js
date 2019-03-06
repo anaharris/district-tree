@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import searchLogo from './search.png'
 import saveLogo from './save.png'
-import mainLogo from './main.png'
+import mainLogo from './logo.svg'
 
 class Navbar extends Component {
 
