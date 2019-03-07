@@ -6,7 +6,6 @@ function LoadingMessage() {
     <div id='loading-background'>
       <img id='loading-logo' src={logo} alt='District Tree logo'/>
       <div id='loading-title'>District Tree</div>
-      <div id='loading-message'>Please wait...</div>
     </div>
   )
 }

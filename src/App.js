@@ -1,8 +1,8 @@
 import React, { Component } from 'react'
 import Navbar from './Components/Navbar'
+import {Segment, Sidebar} from 'semantic-ui-react'
 import {Map, TileLayer, Marker, Popup} from 'react-leaflet'
 import MarkerClusterGroup from 'react-leaflet-markercluster'
-// import treeData from './data/more_data.json'
 import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
 import withLoadingSpinner from './Components/withLoadingSpinner'
@@ -35,7 +35,6 @@ class App extends Component {
     this.state = {
       trees: [],
       coords: "-77.0466470718384,38.89195139727248,-77.0263695716858,38.90345757744355"
-      // loading: true
     }
   }
 
@@ -61,50 +60,57 @@ class App extends Component {
   }
 
   render() {
+
     return (
       <div>
-        <Map
-          ref={m => { this.leafletMap = m; }}
-          id="map"
-          center={mapCenter}
-          zoom={zoom}
-          maxZoom={maxZoom}
-          onMoveEnd={this.handleMapMove.bind()}
-          // zoomend={this.handleMapMove}
+        <Sidebar.Pushable
+          as={Segment}
+          style={{height: '100vh', overflow: 'hidden'}}
         >
-          <TileLayer
-            attribution={attribution}
-            url={tileUrl}
-            id={'mapbox.light'}
-            accessToken={accessToken}
-          />
-            <MarkerClusterGroup>
-          {this.state.trees.map(tree => {
-            return (
-                <Marker
-                  key={`marker_${tree.properties.id}`}
-                  position={[tree.geometry.coordinates[1], tree.geometry.coordinates[0]]}
-                  icon={customIcon}
-                >
-                <Popup key={`pop_${tree.properties.id}`}>
-                  {tree.properties.common_name ? (<div>{`Common name: ${tree.properties.common_name}`}</div>) : null}
-                  {tree.properties.scientific_name ? (<div>{`Scientific name: ${tree.properties.scientific_name}`}</div>) : null}
-                  {tree.properties.fam_name ? (<div>{`Family: ${tree.properties.fam_name}`}</div>) : null}
-                  {tree.properties.genus_name ? (<div>{`Genus: ${tree.properties.genus_name}`}</div>) : null}
-                  {tree.properties.condition ? (<div>{`Condition: ${tree.properties.condition}`}</div>) : null}
-                  Address: {tree.properties.address}
-                </Popup>
-              </ Marker>
-            )
-          })}
-          </ MarkerClusterGroup>
-
-        </ Map>
-        <Navbar />
+        <Navbar/>
+        <Sidebar.Pusher
+          style={{height: '100vh', color: '#edc4bc'}}
+        >
+          <Map
+            ref={m => { this.leafletMap = m; }}
+            id="map"
+            center={mapCenter}
+            zoom={zoom}
+            maxZoom={maxZoom}
+            onMoveEnd={this.handleMapMove.bind()}
+          >
+            <TileLayer
+              attribution={attribution}
+              url={tileUrl}
+              id={'mapbox.light'}
+              accessToken={accessToken}
+            />
+              <MarkerClusterGroup>
+            {this.state.trees.map(tree => {
+              return (
+                  <Marker
+                    key={`marker_${tree.properties.id}`}
+                    position={[tree.geometry.coordinates[1], tree.geometry.coordinates[0]]}
+                    icon={customIcon}
+                  >
+                  <Popup key={`pop_${tree.properties.id}`}>
+                    {tree.properties.common_name ? (<div>{`Common name: ${tree.properties.common_name}`}</div>) : null}
+                    {tree.properties.scientific_name ? (<div>{`Scientific name: ${tree.properties.scientific_name}`}</div>) : null}
+                    {tree.properties.fam_name ? (<div>{`Family: ${tree.properties.fam_name}`}</div>) : null}
+                    {tree.properties.genus_name ? (<div>{`Genus: ${tree.properties.genus_name}`}</div>) : null}
+                    {tree.properties.condition ? (<div>{`Condition: ${tree.properties.condition}`}</div>) : null}
+                    Address: {tree.properties.address}
+                  </Popup>
+                </Marker>
+              )
+            })}
+            </MarkerClusterGroup>
+          </Map>
+          </Sidebar.Pusher>
+        </Sidebar.Pushable>
       </div>
     )
   }
-
 }
 
 export default withLoadingSpinner(App);

@@ -1,34 +1,45 @@
-import React, { Component } from 'react'
-import searchLogo from './search.png'
-import saveLogo from './save.png'
-import mainLogo from './logo.svg'
+import React, {Component} from 'react'
+import {Icon, Image, Menu, Sidebar} from 'semantic-ui-react'
+import navbarLogo from './navbarLogo.png'
+
 
 class Navbar extends Component {
+  state = { visible: false }
 
-  render () {
+  handleButtonClick = () => this.setState({ visible: !this.state.visible })
+  handleSidebarHide = () => this.setState({ visible: false })
+
+  render() {
+    const {visible} = this.state
+    const pinkStyling = {color: '#edc4bc'}
+
     return (
-      <div id='navigation-container'>
-        <div id='navigation-bar'>
-          <div id='main-logo-cont'>
-            <img id='main-logo' src={mainLogo} alt='District Tree logo'/>
-          </div>
-          <ul id="navigation-primary">
-            <li className="nav-item search">
-            <span className="nav-item-icon">
-              <img className='logo' src={searchLogo} alt='search icon'/>
-            </span>
-            </li>
-          <li className="nav-item save">
-            <span className="nav-item-icon">
-              <img className='logo' src={saveLogo} alt='tree icon'/>
-            </span>
-          </li>
-          </ul>
-        </div>
-      </div>
+      <Sidebar
+        as={Menu}
+        direction='right'
+        animation='overlay'
+        icon='labeled'
+        inverted
+        onHide={this.handleSidebarHide}
+        vertical
+        visible={true}
+        width='thin'
+        style={{backgroundColor: '#3a5344', width: '8%'}}
+      >
+      <Menu.Item as='a' style={pinkStyling}>
+        <Image src={navbarLogo} style={{width: '90%', margin: 'auto'}}/>
+      </Menu.Item>
+        <Menu.Item as='a' style={pinkStyling}>
+          <Icon name='home' style={pinkStyling}/>
+          Home
+        </Menu.Item>
+        <Menu.Item as='a' style={pinkStyling}>
+          <Icon name='search' style={pinkStyling}/>
+          Search
+        </Menu.Item>
+      </Sidebar>
     )
   }
-
 
 }
 
