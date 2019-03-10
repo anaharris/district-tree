@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Image, Menu, Sidebar} from 'semantic-ui-react'
+import {Image, Menu, Sidebar, Popup} from 'semantic-ui-react'
 import Filters from './Filters'
 import About from './About'
 import navbarLogo from './logo-circular-full.png'
@@ -36,12 +36,26 @@ class Navbar extends Component {
             <Image src={navbarLogo} style={{width: '90%', margin: 'auto'}}/>
           </Menu.Item>
 
-          <Menu.Item as='a' style={pinkStyling} onClick={this.handleFilterClick}>
-            <Image src={filter} style={{width: '50%', margin: '10% auto'}}/>
-          </Menu.Item>
-          <Menu.Item as='a' style={pinkStyling} onClick={this.handleAboutClick}>
-            <Image src={about} style={{width: '50%', margin: '10% auto'}}/>
-          </Menu.Item>
+          <Popup trigger={
+              <Menu.Item as='a' style={pinkStyling} onClick={this.handleFilterClick}>
+                <Image src={filter} style={{width: '50%', margin: '10% auto'}}/>
+              </Menu.Item>
+            }
+            content="Filter trees"
+            position='left center'
+            basic
+            style={{color: '#3a5344'}}
+          />
+          <Popup trigger={
+              <Menu.Item as='a' style={pinkStyling} onClick={this.handleAboutClick}>
+                <Image src={about} style={{width: '50%', margin: '10% auto'}}/>
+              </Menu.Item>
+            }
+            content="About"
+            position='left center'
+            basic
+            style={{color: '#3a5344'}}
+          />
         </Sidebar>
 
         <Filters visible={this.state.filterVisibility}/>
