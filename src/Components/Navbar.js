@@ -2,7 +2,6 @@ import React, {Component} from 'react'
 import {Image, Menu, Sidebar, Popup} from 'semantic-ui-react'
 import Filters from './Filters'
 import About from './About'
-import navbarLogo from './logo-circular-full.png'
 import about from './about-icon.png'
 import filter from './filter-icon.png'
 
@@ -32,10 +31,6 @@ class Navbar extends Component {
           width='thin'
           style={{backgroundColor: '#3a5344', width: '8%'}}
         >
-          <Menu.Item style={pinkStyling}>
-            <Image src={navbarLogo} style={{width: '90%', margin: 'auto'}}/>
-          </Menu.Item>
-
           <Popup trigger={
               <Menu.Item as='a' style={pinkStyling} onClick={this.handleFilterClick}>
                 <Image src={filter} style={{width: '50%', margin: '10% auto'}}/>
