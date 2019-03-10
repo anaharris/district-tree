@@ -36,11 +36,11 @@ code {
 }
 
 .marker-cluster-small div {
-  background-color: #879c8f;
+  background-color: #fcc2a7;
 }
 
 .marker-cluster-small {
-  background-color: #799082;
+  background-color: #fcbc9e;
   color: black;
 }
 
@@ -54,13 +54,15 @@ code {
 }
 
 .marker-cluster-large div {
-  background-color: #fcc2a7;
+  background-color: #879c8f;
 }
 
 .marker-cluster-large {
-  background-color: #fcbc9e;
+  background-color: #799082;
   color: black;
 }
+
+
 
 
 /* LOADING PAGE */

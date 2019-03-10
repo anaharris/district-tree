@@ -92,6 +92,7 @@ class App extends Component {
                     key={`marker_${tree.properties.id}`}
                     position={[tree.geometry.coordinates[1], tree.geometry.coordinates[0]]}
                     icon={customIcon}
+                    style={{fontColor: '#edc4bc'}}
                   >
                   <Popup key={`pop_${tree.properties.id}`}>
                     {tree.properties.common_name ? (<div>{`Common name: ${tree.properties.common_name}`}</div>) : null}
