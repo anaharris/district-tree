@@ -1,26 +1,36 @@
 import React, {Component} from 'react'
 import {Sidebar, Segment, Form, Header, Divider, Radio, Button} from 'semantic-ui-react'
 import trees from '../data/trees.js'
+import sciName from '../data/sciName.js'
 
 class Filters extends Component {
   state = {
     condition: '',
-    ward: ''
+    ward: '',
+    commonName: '',
+    sciName: ''
   }
 
   handleCondition = (e, { value }) => this.setState({ condition: value })
 
   handleWard = (e, { value }) => this.setState({ ward: value })
 
+  handleCommonName = (e, {value}) => this.setState({commonName: value})
+
+  handleSciName = (e, {value}) => this.setState({sciName: value})
+
   handleReset = (e) => {
-    this.setState({ condition: '', ward: ''})
+    this.setState({ condition: '', ward: '', commonName: '', sciName: ''})
     this.props.resetFilters()
     this.props.closeFilters()
   }
+
   handleSubmit = () => {
     let filters = {
       condition: this.state.condition,
-      ward: this.state.ward
+      ward: this.state.ward,
+      commonName: this.state.commonName,
+      sciName: this.state.sciName
     }
     this.props.handleFilters(filters)
     this.props.closeFilters()
@@ -51,7 +61,8 @@ class Filters extends Component {
               style={{color: '#3a5344'}}
             >Filter trees</Header>
             <Divider/>
-            <p>Select filters and press 'Filter'. Start moving the map or zooming out to see the results. To reset the filters press 'Reset' and start moving the map to see all the trees.</p>
+            <p>Select ward, condition, common name or scientific name, and click on <strong>Filter</strong>. The map will zoom out and show the results. Zoom in to see more details. </p>
+            <p>To reset the filters click <strong>Reset</strong> and start moving the map.</p>
             <Form size='large' onSubmit={this.handleSubmit}>
               <p style={{fontWeight: '700'}}>Ward</p>
               <Form.Group inline>
@@ -145,6 +156,23 @@ class Filters extends Component {
                   onChange={this.handleCondition}
                 />
               </Form.Group>
+              <p style={{fontWeight: '700'}}>Common Name*</p>
+              <Form.Group widths='equal'>
+                <Form.Select
+                  fluid options={trees}
+                  placeholder='Common Name'
+                  onChange={this.handleCommonName}
+                />
+              </Form.Group>
+              <p style={{fontWeight: '700'}}>Scientific Name*</p>
+              <Form.Group widths='equal'>
+                <Form.Select
+                  fluid options={sciName}
+                  placeholder='Scientific Name'
+                  onChange={this.handleSciName}
+                />
+              </Form.Group>
+              <p>*select common name <strong>or</strong> scientific name</p>
               <Button type='submit' style={{backgroundColor: '#3a5344', color: 'white'}}>
                 Filter
               </Button>
@@ -152,8 +180,6 @@ class Filters extends Component {
                 Reset
               </Button>
             </Form>
-
-
           </Sidebar>
     )
   }

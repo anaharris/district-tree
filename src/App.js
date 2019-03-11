@@ -40,7 +40,9 @@ class App extends Component {
       mapCenter: [38.8977, -77.0365],
       filters: {
         ward: '',
-        condition: ''
+        condition: '',
+        commonName: '',
+        sciName: ''
       }
     }
   }
@@ -50,7 +52,7 @@ class App extends Component {
   }
 
   fetchTrees = () => {
-    fetch(`http://localhost:5000/trees?bbox=${this.state.coords}&ward=${this.state.filters.ward}&condition=${this.state.filters.condition}`)
+    fetch(`http://localhost:5000/trees?bbox=${this.state.coords}&ward=${this.state.filters.ward}&condition=${this.state.filters.condition}&common_name=${this.state.filters.commonName}&scientific_name=${this.state.filters.sciName}`)
       .then(res => res.json())
       .then(data => {
         this.setState({trees: data.features})
@@ -74,7 +76,9 @@ class App extends Component {
     this.setState({
       filters: {
         condition: '',
-        ward: ''
+        ward: '',
+        commonName: '',
+        sciName: ''
       }
     })
   }
