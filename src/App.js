@@ -72,7 +72,7 @@ class App extends Component {
           style={{height: '100vh', color: '#edc4bc'}}
         >
           <Map
-            ref={m => { this.leafletMap = m; }}
+            ref={m => { this.leafletMap = m }}
             id="map"
             center={mapCenter}
             zoom={zoom}

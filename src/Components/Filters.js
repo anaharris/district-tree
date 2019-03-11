@@ -1,27 +1,23 @@
 import React, {Component} from 'react'
-import {Sidebar, Segment, Form, Header, Divider, Radio} from 'semantic-ui-react'
+import {Sidebar, Segment, Form, Header, Divider, Radio, Button} from 'semantic-ui-react'
+import trees from '../data/trees.js'
 
 class Filters extends Component {
   state = {
     visible: false,
-    value: '',
-    ward: 1
+    condition: '',
+    ward: ''
   }
 
-  handleChange = (e, { value }) => this.setState({ value })
+  handleCondition = (e, { value }) => this.setState({ condition: value })
+
+  handleWard = (e, { value }) => this.setState({ ward: value })
+
+  handleReset = (e) => this.setState({ condition: '', ward: ''})
 
   render() {
-    const value = this.state.value
-    const options = [
-      {key: 1, text: 1, value: 1},
-      {key: 2, text: 2, value: 2},
-      {key: 3, text: 3, value: 3},
-      {key: 4, text: 4, value: 4},
-      {key: 5, text: 5, value: 5},
-      {key: 6, text: 6, value: 6},
-      {key: 7, text: 7, value: 7},
-      {key: 8, text: 8, value: 8}
-    ]
+    const condition = this.state.condition
+    const ward = this.state.ward
 
     return (
           <Sidebar
@@ -41,14 +37,69 @@ class Filters extends Component {
               as='h1'
               size='huge'
               style={{color: '#3a5344'}}
-            >
-              Filter trees
-            </Header>
+            >Filter trees</Header>
             <Divider/>
-            <Form size='large'>
+            <Form size='large' onSubmit={this.handleSubmit}>
               <p style={{fontWeight: '700'}}>Ward</p>
-              <Form.Group widths='2'>
-                <Form.Select fluid options={options} placeholder='Ward'/>
+              <Form.Group inline>
+                <Form.Field
+                  control={Radio}
+                  label='1'
+                  value='1'
+                  checked={ward === '1'}
+                  onChange={this.handleWard}
+                />
+                <Form.Field
+                  control={Radio}
+                  label='2'
+                  value='2'
+                  checked={ward === '2'}
+                  onChange={this.handleWard}
+                />
+                <Form.Field
+                  control={Radio}
+                  label='3'
+                  value='3'
+                  checked={ward === '3'}
+                  onChange={this.handleWard}
+                />
+                <Form.Field
+                  control={Radio}
+                  label='4'
+                  value='4'
+                  checked={ward === '4'}
+                  onChange={this.handleWard}
+                />
+              </Form.Group>
+              <Form.Group inline>
+                <Form.Field
+                  control={Radio}
+                  label='5'
+                  value='5'
+                  checked={ward === '5'}
+                  onChange={this.handleWard}
+                />
+                <Form.Field
+                  control={Radio}
+                  label='6'
+                  value='6'
+                  checked={ward === '6'}
+                  onChange={this.handleWard}
+                />
+                <Form.Field
+                  control={Radio}
+                  label='7'
+                  value='7'
+                  checked={ward === '7'}
+                  onChange={this.handleWard}
+                />
+                <Form.Field
+                  control={Radio}
+                  label='8'
+                  value='8'
+                  checked={ward === '8'}
+                  onChange={this.handleWard}
+                />
               </Form.Group>
               <p style={{fontWeight: '700'}}>Condition</p>
               <Form.Group inline>
@@ -56,32 +107,40 @@ class Filters extends Component {
                   control={Radio}
                   label='Poor'
                   value='Poor'
-                  checked={value === 'Poor'}
-                  onChange={this.handleChange}
+                  checked={condition === 'Poor'}
+                  onChange={this.handleCondition}
                 />
                 <Form.Field
                   control={Radio}
                   label='Fair'
                   value='Fair'
-                  checked={value === 'Fair'}
-                  onChange={this.handleChange}
+                  checked={condition === 'Fair'}
+                  onChange={this.handleCondition}
                 />
                 <Form.Field
                   control={Radio}
                   label='Good'
                   value='Good'
-                  checked={value === 'Good'}
-                  onChange={this.handleChange}
+                  checked={condition === 'Good'}
+                  onChange={this.handleCondition}
                 />
                 <Form.Field
                   control={Radio}
                   label='Excellent'
                   value='Excellent'
-                  checked={value === 'Excellent'}
-                  onChange={this.handleChange}
+                  checked={condition === 'Excellent'}
+                  onChange={this.handleCondition}
                 />
               </Form.Group>
+              <Button type='submit' style={{backgroundColor: '#3a5344', color: 'white'}}>
+                Filter
+              </Button>
+              <Button onClick={this.handleReset}>
+                Reset
+              </Button>
             </Form>
+
+
           </Sidebar>
     )
   }
