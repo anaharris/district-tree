@@ -4,7 +4,6 @@ import trees from '../data/trees.js'
 
 class Filters extends Component {
   state = {
-    visible: false,
     condition: '',
     ward: ''
   }
@@ -16,6 +15,7 @@ class Filters extends Component {
   handleReset = (e) => {
     this.setState({ condition: '', ward: ''})
     this.props.resetFilters()
+    this.props.closeFilters()
   }
   handleSubmit = () => {
     let filters = {
@@ -23,6 +23,7 @@ class Filters extends Component {
       ward: this.state.ward
     }
     this.props.handleFilters(filters)
+    this.props.closeFilters()
   }
 
 
@@ -50,6 +51,7 @@ class Filters extends Component {
               style={{color: '#3a5344'}}
             >Filter trees</Header>
             <Divider/>
+            <p>Select filters and press 'Filter'. Start moving the map or zooming out to see the results. To reset the filters press 'Reset' and start moving the map to see all the trees.</p>
             <Form size='large' onSubmit={this.handleSubmit}>
               <p style={{fontWeight: '700'}}>Ward</p>
               <Form.Group inline>

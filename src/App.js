@@ -23,18 +23,21 @@ const customIcon = new L.Icon({
 const accessToken = 'pk.eyJ1IjoiYW5haGFycmlzIiwiYSI6ImNqcWQyamVxOTBrMG40Mm4yYWFwYWtnc3gifQ.y6JLzfgsdsmZJqy1V1rsfg'
 const tileUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}'
 const attribution = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
-const mapCenter = [38.8977, -77.0365]
-const zoom = 16
+// const mapCenter = [38.8977, -77.0365]
 const maxZoom = 19
 
 
 class App extends Component {
 
+// "-77.0466470718384,38.89195139727248,-77.0263695716858,38.90345757744355"
+
   constructor() {
     super()
     this.state = {
       trees: [],
-      coords: "-77.0466470718384,38.89195139727248,-77.0263695716858,38.90345757744355",
+      coords: "-77.08652447909118,38.87474892703924,-76.98558758944274,38.920773608252965",
+      zoom: 14,
+      mapCenter: [38.8977, -77.0365],
       filters: {
         ward: '',
         condition: ''
@@ -64,7 +67,7 @@ class App extends Component {
   }
 
   handleFilters = (filters) => {
-    this.setState({filters})
+    this.setState({filters: filters, zoom: 12})
   }
 
   resetFilters = () => {
@@ -94,8 +97,8 @@ class App extends Component {
           <Map
             ref={m => { this.leafletMap = m }}
             id="map"
-            center={mapCenter}
-            zoom={zoom}
+            center={this.state.mapCenter}
+            zoom={this.state.zoom}
             maxZoom={maxZoom}
             onMoveEnd={this.handleMapMove.bind()}
           >

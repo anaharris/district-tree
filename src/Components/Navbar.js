@@ -14,6 +14,11 @@ class Navbar extends Component {
 
   handleFilterClick = () => this.setState({ filterVisibility: !this.state.filterVisibility, aboutVisibility: false })
   handleAboutClick = () => this.setState({ aboutVisibility: !this.state.aboutVisibility, filterVisibility: false })
+  closeFilters = () => {
+    setTimeout(() => {
+      this.setState({filterVisibility: false})
+    }, 500)
+  }
 
   render() {
     const pinkStyling = {color: '#edc4bc'}
@@ -57,6 +62,7 @@ class Navbar extends Component {
           visible={this.state.filterVisibility}
           handleFilters={this.props.handleFilters}
           resetFilters={this.props.resetFilters}
+          closeFilters={this.closeFilters}
         />
         <About visible={this.state.aboutVisibility}/>
       </div>
