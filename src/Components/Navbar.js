@@ -53,7 +53,11 @@ class Navbar extends Component {
           />
         </Sidebar>
 
-        <Filters visible={this.state.filterVisibility}/>
+        <Filters
+          visible={this.state.filterVisibility}
+          handleFilters={this.props.handleFilters}
+          resetFilters={this.props.resetFilters}
+        />
         <About visible={this.state.aboutVisibility}/>
       </div>
     )

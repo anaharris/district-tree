@@ -13,7 +13,18 @@ class Filters extends Component {
 
   handleWard = (e, { value }) => this.setState({ ward: value })
 
-  handleReset = (e) => this.setState({ condition: '', ward: ''})
+  handleReset = (e) => {
+    this.setState({ condition: '', ward: ''})
+    this.props.resetFilters()
+  }
+  handleSubmit = () => {
+    let filters = {
+      condition: this.state.condition,
+      ward: this.state.ward
+    }
+    this.props.handleFilters(filters)
+  }
+
 
   render() {
     const condition = this.state.condition

@@ -34,7 +34,11 @@ class App extends Component {
     super()
     this.state = {
       trees: [],
-      coords: "-77.0466470718384,38.89195139727248,-77.0263695716858,38.90345757744355"
+      coords: "-77.0466470718384,38.89195139727248,-77.0263695716858,38.90345757744355",
+      filters: {
+        ward: '',
+        condition: ''
+      }
     }
   }
 
@@ -43,7 +47,7 @@ class App extends Component {
   }
 
   fetchTrees = () => {
-    fetch(`http://localhost:5000/trees?bbox=${this.state.coords}`)
+    fetch(`http://localhost:5000/trees?bbox=${this.state.coords}&ward=${this.state.filters.ward}&condition=${this.state.filters.condition}`)
       .then(res => res.json())
       .then(data => {
         this.setState({trees: data.features})
@@ -59,6 +63,19 @@ class App extends Component {
     this.fetchTrees()
   }
 
+  handleFilters = (filters) => {
+    this.setState({filters})
+  }
+
+  resetFilters = () => {
+    this.setState({
+      filters: {
+        condition: '',
+        ward: ''
+      }
+    })
+  }
+
   render() {
 
     return (
@@ -67,7 +84,10 @@ class App extends Component {
           as={Segment}
           style={{height: '100vh', overflow: 'hidden'}}
         >
-        <Navbar/>
+        <Navbar
+          handleFilters={this.handleFilters}
+          resetFilters={this.resetFilters}
+        />
         <Sidebar.Pusher
           style={{height: '100vh', color: '#edc4bc'}}
         >
