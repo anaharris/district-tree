@@ -25,14 +25,8 @@ class Filters extends Component {
     this.props.closeFilters()
   }
 
-  handleSubmit = () => {
-    let filters = {
-      condition: this.state.condition,
-      ward: this.state.ward,
-      commonName: this.state.commonName,
-      sciName: this.state.sciName
-    }
-    this.props.handleFilters(filters)
+  handleSubmit = (e) => {
+    this.props.handleFilters(this.state.condition, this.state.ward, this.state.commonName, this.state.sciName)
     this.props.closeFilters()
   }
 

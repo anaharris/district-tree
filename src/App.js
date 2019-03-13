@@ -35,24 +35,23 @@ class App extends Component {
     super()
     this.state = {
       trees: [],
-      coords: "-77.08652447909118,38.87474892703924,-76.98558758944274,38.920773608252965",
-      zoom: 14,
+      coords: "-77.2383499145508,38.805470223177466,-76.83460235595705,38.989569403083166",
+      zoom: 12,
       mapCenter: [38.8977, -77.0365],
-      filters: {
-        ward: '',
-        condition: '',
-        commonName: '',
-        sciName: ''
-      }
+      ward: '',
+      condition: '',
+      commonName: '',
+      sciName: ''
     }
   }
 
   componentDidMount = () => {
-      this.fetchTrees()
+      this.fetchTrees(this.state.condition, this.state.ward, this.state.commonName, this.state.sciName)
   }
 
-  fetchTrees = () => {
-    fetch(`http://localhost:5000/trees?bbox=${this.state.coords}&ward=${this.state.filters.ward}&condition=${this.state.filters.condition}&common_name=${this.state.filters.commonName}&scientific_name=${this.state.filters.sciName}`)
+  fetchTrees = (condition, ward, commonName, sciName) => {
+    console.log('fetchTrees:ward='+ward)
+    fetch(`http://localhost:5000/trees?bbox=${this.state.coords}&ward=${ward}&condition=${condition}&common_name=${commonName}&scientific_name=${sciName}`)
       .then(res => res.json())
       .then(data => {
         this.setState({trees: data.features})
@@ -64,27 +63,28 @@ class App extends Component {
     let swLat = this.leafletMap.leafletElement.getBounds()._southWest.lat
     let neLng = this.leafletMap.leafletElement.getBounds()._northEast.lng
     let neLat = this.leafletMap.leafletElement.getBounds()._northEast.lat
+    console.log('coords=' + this.state.coords)
     this.setState({coords: `${swLng},${swLat},${neLng},${neLat}`})
-    this.fetchTrees()
+    this.fetchTrees(this.state.condition, this.state.ward, this.state.commonName, this.state.sciName)
   }
 
-  handleFilters = (filters) => {
-    this.setState({filters: filters, zoom: 12})
+  handleFilters = (condition, ward, commonName, sciName) => {
+    this.setState({condition: condition, ward: ward, commonName: commonName, sciName: sciName})
+    this.fetchTrees(condition, ward, commonName, sciName)
   }
 
   resetFilters = () => {
+    this.fetchTrees('', '', '', '')
     this.setState({
-      filters: {
-        condition: '',
-        ward: '',
-        commonName: '',
-        sciName: ''
-      }
+      condition: '',
+      ward: '',
+      commonName: '',
+      sciName: ''
     })
+
   }
 
   render() {
-
     return (
       <div>
         <Sidebar.Pushable
@@ -104,7 +104,7 @@ class App extends Component {
             center={this.state.mapCenter}
             zoom={this.state.zoom}
             maxZoom={maxZoom}
-            onMoveEnd={this.handleMapMove.bind()}
+            onMoveEnd={this.handleMapMove}
           >
             <TileLayer
               attribution={attribution}
@@ -112,7 +112,8 @@ class App extends Component {
               id={'mapbox.light'}
               accessToken={accessToken}
             />
-              <MarkerClusterGroup>
+              <MarkerClusterGroup
+              >
             {this.state.trees.map(tree => {
               return (
                   <Marker
