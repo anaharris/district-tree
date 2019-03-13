@@ -55,8 +55,8 @@ class Filters extends Component {
               style={{color: '#3a5344'}}
             >Filter trees</Header>
             <Divider/>
-            <p>Select ward, condition, common name or scientific name, and click on <strong>Filter</strong>. The map will zoom out and show the results. Zoom in to see more details. </p>
-            <p>To reset the filters click <strong>Reset</strong> and start moving the map.</p>
+            <p>Select ward, condition, common name or scientific name, and click on <strong>Filter</strong>. To see more details zoom in. </p>
+            <p>To reset the filters click <strong>Reset</strong>.</p>
             <Form size='large' onSubmit={this.handleSubmit}>
               <p style={{fontWeight: '700'}}>Ward</p>
               <Form.Group inline>
