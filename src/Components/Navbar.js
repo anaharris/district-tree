@@ -1,34 +1,73 @@
-import React, { Component } from 'react'
-import searchLogo from './search.png'
-import saveLogo from './save.png'
-import mainLogo from './logo.svg'
+import React, {Component} from 'react'
+import {Image, Menu, Sidebar, Popup} from 'semantic-ui-react'
+import Filters from './Filters'
+import About from './About'
+import about from './about-icon.png'
+import filter from './filter-icon.png'
+
 
 class Navbar extends Component {
+  state = {
+    filterVisibility: false,
+    aboutVisibility: false
+   }
 
-  render () {
+  handleFilterClick = () => this.setState({ filterVisibility: !this.state.filterVisibility, aboutVisibility: false })
+  handleAboutClick = () => this.setState({ aboutVisibility: !this.state.aboutVisibility, filterVisibility: false })
+  closeFilters = () => {
+    setTimeout(() => {
+      this.setState({filterVisibility: false})
+    }, 500)
+  }
+
+  render() {
+    const pinkStyling = {color: '#edc4bc'}
+
     return (
-      <div id='navigation-container'>
-        <div id='navigation-bar'>
-          <div id='main-logo-cont'>
-            <img id='main-logo' src={mainLogo} alt='District Tree logo'/>
-          </div>
-          <ul id="navigation-primary">
-            <li className="nav-item search">
-            <span className="nav-item-icon">
-              <img className='logo' src={searchLogo} alt='search icon'/>
-            </span>
-            </li>
-          <li className="nav-item save">
-            <span className="nav-item-icon">
-              <img className='logo' src={saveLogo} alt='tree icon'/>
-            </span>
-          </li>
-          </ul>
-        </div>
+      <div>
+        <Sidebar
+          as={Menu}
+          direction='right'
+          animation='overlay'
+          icon='labeled'
+          inverted
+          vertical
+          visible={true}
+          width='thin'
+          style={{backgroundColor: '#3a5344', width: '8%'}}
+        >
+          <Popup trigger={
+              <Menu.Item as='a' style={pinkStyling} onClick={this.handleFilterClick}>
+                <Image src={filter} style={{width: '50%', margin: '10% auto'}}/>
+              </Menu.Item>
+            }
+            content="Filter trees"
+            position='left center'
+            basic
+            style={{color: '#3a5344'}}
+          />
+          <Popup trigger={
+              <Menu.Item as='a' style={pinkStyling} onClick={this.handleAboutClick}>
+                <Image src={about} style={{width: '50%', margin: '10% auto'}}/>
+              </Menu.Item>
+            }
+            content="About"
+            position='left center'
+            basic
+            style={{color: '#3a5344'}}
+          />
+        </Sidebar>
+
+        <Filters
+          visible={this.state.filterVisibility}
+          handleFilters={this.props.handleFilters}
+          resetFilters={this.props.resetFilters}
+          closeFilters={this.closeFilters}
+        />
+        <About visible={this.state.aboutVisibility}/>
       </div>
     )
   }
-
 
 }
 

@@ -1,12 +1,10 @@
 import React, {Component} from 'react'
-import logo from './logo.svg'
+import logo from './loading-screen.png'
 
 function LoadingMessage() {
   return (
     <div id='loading-background'>
       <img id='loading-logo' src={logo} alt='District Tree logo'/>
-      <div id='loading-title'>District Tree</div>
-      <div id='loading-message'>Please wait...</div>
     </div>
   )
 }
