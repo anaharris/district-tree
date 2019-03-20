@@ -7,6 +7,7 @@ import 'leaflet/dist/leaflet.css'
 import L from 'leaflet'
 import withLoadingSpinner from './Components/withLoadingSpinner'
 
+// removes default marker icon
 delete L.Icon.Default.prototype._getIconUrl;
 
 L.Icon.Default.mergeOptions({
@@ -15,15 +16,20 @@ L.Icon.Default.mergeOptions({
     shadowUrl: require('leaflet/dist/images/marker-shadow.png')
 });
 
+// adds new marker icon
 const customIcon = new L.Icon({
     iconUrl: require('./assets/png/marker.png'),
     iconSize: [25, 25]
 })
 
+// map styling
 const accessToken = 'pk.eyJ1IjoiYW5haGFycmlzIiwiYSI6ImNqcWQyamVxOTBrMG40Mm4yYWFwYWtnc3gifQ.y6JLzfgsdsmZJqy1V1rsfg'
 const tileUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}'
 const attribution = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
 const maxZoom = 19
+
+// API URL
+const URL = 'https://district-tree.herokuapp.com/trees'
 
 
 class App extends Component {
@@ -48,13 +54,14 @@ class App extends Component {
 
   fetchTrees = (condition, ward, commonName, sciName) => {
     console.log('fetchTrees:ward='+ward)
-    fetch(`http://localhost:5000/trees?bbox=${this.state.coords}&ward=${ward}&condition=${condition}&common_name=${commonName}&scientific_name=${sciName}`)
+    fetch(`${URL}?bbox=${this.state.coords}&ward=${ward}&condition=${condition}&common_name=${commonName}&scientific_name=${sciName}`)
       .then(res => res.json())
       .then(data => {
         this.setState({trees: data.features})
       })
   }
 
+// callbacks
   handleMapMove = () => {
     let swLng = this.leafletMap.leafletElement.getBounds()._southWest.lng
     let swLat = this.leafletMap.leafletElement.getBounds()._southWest.lat

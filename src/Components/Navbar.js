@@ -12,8 +12,11 @@ class Navbar extends Component {
     aboutVisibility: false
    }
 
+// callbacks
   handleFilterClick = () => this.setState({ filterVisibility: !this.state.filterVisibility, aboutVisibility: false })
+
   handleAboutClick = () => this.setState({ aboutVisibility: !this.state.aboutVisibility, filterVisibility: false })
+
   closeFilters = () => {
     setTimeout(() => {
       this.setState({filterVisibility: false})

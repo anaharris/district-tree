@@ -11,6 +11,8 @@ class Filters extends Component {
     sciName: ''
   }
 
+
+// callbacks
   handleCondition = (e, { value }) => this.setState({ condition: value })
 
   handleWard = (e, { value }) => this.setState({ ward: value })
