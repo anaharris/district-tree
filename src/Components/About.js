@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {Sidebar, Segment, Divider, Header, Image} from 'semantic-ui-react'
+import {Sidebar, Segment, Image} from 'semantic-ui-react'
 import logo from './dt-logo.png'
 
 class About extends Component {
@@ -24,7 +24,7 @@ class About extends Component {
                 District Tree is an interactive map of street trees in Washington, D.C. that uses an <a
                   href='http://opendata.dc.gov/datasets/f6c3c04113944f23a7993f2e603abaf2_23'
                   target='_blank'
-                  rel='noopener'
+                  rel="noopener noreferrer"
                   style={{color: '#e4a3a0'}}
                 >open dataset</a> curated by DDOT's Urban Forestry Division of the DC city government.
               </p>
@@ -34,7 +34,7 @@ class About extends Component {
               <a
                 href='http://www.anavharris.com/projects/district-tree'
                 target='_blank'
-                rel='noopener'
+                rel="noopener noreferrer"
                 style={{color: '#edc4bc'}}
               >
                 More info
