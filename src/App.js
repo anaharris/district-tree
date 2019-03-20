@@ -53,7 +53,6 @@ class App extends Component {
   }
 
   fetchTrees = (condition, ward, commonName, sciName) => {
-    console.log('fetchTrees:ward='+ward)
     fetch(`${URL}?bbox=${this.state.coords}&ward=${ward}&condition=${condition}&common_name=${commonName}&scientific_name=${sciName}`)
       .then(res => res.json())
       .then(data => {
@@ -67,7 +66,6 @@ class App extends Component {
     let swLat = this.leafletMap.leafletElement.getBounds()._southWest.lat
     let neLng = this.leafletMap.leafletElement.getBounds()._northEast.lng
     let neLat = this.leafletMap.leafletElement.getBounds()._northEast.lat
-    console.log('coords=' + this.state.coords)
     this.setState({coords: `${swLng},${swLat},${neLng},${neLat}`})
     this.fetchTrees(this.state.condition, this.state.ward, this.state.commonName, this.state.sciName)
   }
