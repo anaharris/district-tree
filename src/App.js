@@ -23,13 +23,10 @@ const customIcon = new L.Icon({
 const accessToken = 'pk.eyJ1IjoiYW5haGFycmlzIiwiYSI6ImNqcWQyamVxOTBrMG40Mm4yYWFwYWtnc3gifQ.y6JLzfgsdsmZJqy1V1rsfg'
 const tileUrl = 'https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}'
 const attribution = 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>'
-// const mapCenter = [38.8977, -77.0365]
 const maxZoom = 19
 
 
 class App extends Component {
-
-// "-77.0466470718384,38.89195139727248,-77.0263695716858,38.90345757744355"
 
   constructor() {
     super()

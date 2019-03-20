@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {Sidebar, Segment, Form, Header, Divider, Radio, Button} from 'semantic-ui-react'
 import trees from '../data/trees.js'
-import sciName from '../data/sciName.js'
+import treesSciNames from '../data/sciName.js'
 
 class Filters extends Component {
   state = {
@@ -34,6 +34,8 @@ class Filters extends Component {
   render() {
     const condition = this.state.condition
     const ward = this.state.ward
+    const commonName = this.state.commonName
+    const sciName = this.state.sciName
 
     return (
           <Sidebar
@@ -154,6 +156,7 @@ class Filters extends Component {
               <Form.Group widths='equal'>
                 <Form.Select
                   fluid options={trees}
+                  value = {commonName}
                   placeholder='Common Name'
                   onChange={this.handleCommonName}
                 />
@@ -161,7 +164,8 @@ class Filters extends Component {
               <p style={{fontWeight: '700'}}>Scientific Name*</p>
               <Form.Group widths='equal'>
                 <Form.Select
-                  fluid options={sciName}
+                  fluid options={treesSciNames}
+                  value = {sciName}
                   placeholder='Scientific Name'
                   onChange={this.handleSciName}
                 />
