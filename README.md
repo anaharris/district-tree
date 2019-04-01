@@ -1,3 +1,9 @@
+
+District Tree is an interactive map of street trees in Washington, D.C. 
+For more info and live demo visit www.anavharris.com/projects/district-tree
+
+
+________________________________________________________________________________________________________
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
